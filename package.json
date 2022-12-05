@@ -38,6 +38,7 @@
     "babel-loader": "^9.1.0",
     "css-loader": "^6.7.2",
     "html-webpack-plugin": "^5.5.0",
+    "nodemon": "^2.0.20",
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0",
     "style-loader": "^3.3.1",
