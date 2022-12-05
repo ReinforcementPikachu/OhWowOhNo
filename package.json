@@ -1,0 +1,19 @@
+{
+  "name": "fridgetime",
+  "version": "1.0.0",
+  "description": "fridge app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ReinforcementPikachu/FridgeTime.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ReinforcementPikachu/FridgeTime/issues"
+  },
+  "homepage": "https://github.com/ReinforcementPikachu/FridgeTime#readme"
+}
