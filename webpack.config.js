@@ -5,10 +5,10 @@ module.exports = {
     mode: process.env.NODE_ENV,
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, './Client/index.html'),
+            template: path.join(__dirname, './client/index.html'),
             filename: 'index.html',
           })],
-    entry: './Client/index.tsx',
+    entry: './client/index.js',
     output: {
         path: path.resolve(__dirname, 'build'),
         publicPath: '/',
