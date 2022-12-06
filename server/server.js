@@ -3,15 +3,19 @@ const { appendFile } = require('fs');
 const path = require('path');
 //remember to connect db
 // const sql = require('sql')
+const userRouter = require('./routes/userRouter');
+const fridgeRouter = require('./routes/fridgeRouter');
+const recipeRouter = require('./routes/recipeRouter');
+
 const PORT = 3000;
 
 const app = express();
 
 app.use(express.json());
 
-// app.use('/api/user', userRouter)
-// app.use('/api/fridge', fridgeRouter)
-// app.use('/api/recipe', recipeRouter)
+app.use('/api/user', userRouter)
+app.use('/api/fridge', fridgeRouter)
+app.use('/api/recipe', recipeRouter)
 
 app.use((req, res) => {
   res.status(400).send('Sorry, page not found >.<')
