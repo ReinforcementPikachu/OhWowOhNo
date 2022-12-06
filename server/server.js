@@ -1,8 +1,7 @@
 const express = require('express');
 const { appendFile } = require('fs');
 const path = require('path');
-//remember to connect db
-// const sql = require('sql')
+
 const userRouter = require('./routes/userRouter');
 const fridgeRouter = require('./routes/fridgeRouter');
 const recipeRouter = require('./routes/recipeRouter');
@@ -14,9 +13,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-// app.use('/api/user', userRouter)
-// app.use('/api/fridge', fridgeRouter)
-// app.use('/api/recipe', recipeRouter)
+app.use('/api/user', userRouter)
+app.use('/api/fridge', fridgeRouter)
+app.use('/api/recipe', recipeRouter)
 
 //serve HTML
 app.get('/', (req, res) => {
