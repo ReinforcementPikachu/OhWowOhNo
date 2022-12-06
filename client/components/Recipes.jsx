@@ -2,6 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 
-export default Recipes = () => {
-    
-}
+const Recipes = () => {
+    return(
+        <div>
+            <p>Saved recipes...</p>
+        </div>
+    )
+};
+
+export default Recipes;
