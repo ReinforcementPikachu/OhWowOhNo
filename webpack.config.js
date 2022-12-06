@@ -35,7 +35,7 @@ module.exports = {
     },
     devServer: {
         proxy: {
-            //"/": "http://localhost:3000",
+            "/build": "http://localhost:3000",
         },
         compress: true,
         port: 8080,

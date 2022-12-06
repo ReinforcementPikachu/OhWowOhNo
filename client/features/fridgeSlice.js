@@ -1,23 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
-    fridgeArray: [],
-}
-
 export const fridgeSlice = createSlice({
     name: 'fridge',
-    initialState,
+    initialState: {
+        food: '',
+        fridgeArray: [],
+    },
     reducers: {
         addItem: (state, action) => {
             state.fridgeArray.push(action.payload);
-            console.log(state.fridgeArray)
         },
         deleteItem: (state, action) => {
             state.fridgeArray.filter(item => item !== action.payload)
         },
+
+        createFood: (state, action) => {
+            state.food = action.payload
+        }
     },
 });
 
-export const { addItem, deleteItem } = fridgeSlice.actions;
+export const { addItem, deleteItem, createFood } = fridgeSlice.actions;
+
+export const selectFood = (state) => state.fridge.food;
+export const selectContents = (state) => state.fridge.fridgeArray;
 
 export default fridgeSlice.reducer;
