@@ -12,7 +12,7 @@ const FridgePage = () => {
             <FridgeNav />
             <div>
                 <Routes>
-                    <Route path="/fridge" element={<Fridge />} />
+                    <Route path="/" element={<Fridge />} />
                     <Route path="/recipes" element={<Recipes />} />
                 </Routes>
             </div>
