@@ -9,9 +9,9 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/api/user', userRouter)
-app.use('/api/fridge', fridgeRouter)
-app.use('/api/recipe', recipeRouter)
+// app.use('/api/user', userRouter)
+// app.use('/api/fridge', fridgeRouter)
+// app.use('/api/recipe', recipeRouter)
 
 app.use((req, res) => {
   res.status(400).send('Sorry, page not found >.<')
