@@ -6,11 +6,11 @@ import Fridge from '../components/Fridge.jsx'
 import Recipes from '../components/Recipes.jsx'
 
 
-export default FridgePage = () => {
+const FridgePage = () => {
     return (
         <div>
             <FridgeNav />
-            <div> 
+            <div>
                 <Routes>
                     <Route path="/fridge" element={<Fridge />} />
                     <Route path="/recipes" element={<Recipes />} />
@@ -18,4 +18,6 @@ export default FridgePage = () => {
             </div>
         </div>
     )
-}
+};
+
+export default FridgePage;

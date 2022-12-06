@@ -1,23 +1,26 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Route, Routes, Link } from 'react-router-dom';
-import Login from './containers/Login.jsx'
-import NavBar from './containers/NavBar.jsx'
-import SignUp from './containers/SignUp.jsx'
-import FridgePage from './containers/FridgePage.jsx'
+import Login from './containers/Login.jsx';
+import NavBar from './containers/NavBar.jsx';
+import SignUp from './containers/SignUp.jsx';
+import FridgePage from './containers/FridgePage.jsx';
 
 
-export default App = () => {
+const App = () => {
     return (
-        <div>
+         <div>
             <NavBar />
-            <div>
+                <div>
                 <Routes>
-                    <Route path="/" element={<Login />} />
-                    <Route path="/signup" element={<SignUp />} />
-                    <Route path="/fridge" element={<FridgePage />} />
+                    <Route path="/signup/*" element={<SignUp />} />
+                    <Route path="/yourfridge/*" element={<FridgePage />} />
+                    <Route path="/*" element={<Login />} />
                 </Routes>
-            </div> 
-        </div>
+                </div>
+        </div> 
+        
     )
-}
+};
+
+export default App;

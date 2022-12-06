@@ -8,13 +8,23 @@ const PORT = 3000;
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
-app.use('/api/user', userRouter)
-app.use('/api/fridge', fridgeRouter)
-app.use('/api/recipe', recipeRouter)
+// app.use('/api/user', userRouter)
+// app.use('/api/fridge', fridgeRouter)
+// app.use('/api/recipe', recipeRouter)
 
+//serve HTML
+app.get('/', (req, res) => {
+  return res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
+});
+
+//serve static build files
+app.use('/build', express.static(path.join(__dirname, '../build')));
+
+//error 404 handler
 app.use((req, res) => {
-  res.status(400).send('Sorry, page not found >.<')
+  res.status(404).send('Sorry, page not found >.<')
 });
 
 //global error
