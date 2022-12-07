@@ -23,11 +23,18 @@ export const userSlice = createSlice({
         noUser: (state) => {
             state.error = true,
             state.authenticated = false
+        }, 
+        newUser: (state) => {
+            state.authenticated = true
+        },
+        userInDatabase: (state,action) => {
+            state.error = true,
+            state.username = action.payload.username
         }
     },
 });
 
-export const {logIn, logOut, noUser} = userSlice.actions;
+export const {logIn, logOut, noUser, newUser, userInDatabase} = userSlice.actions;
 
 export const selectUserId = (state) => state.user.userId;
 export const selectUsername = (state) => state.user.username;

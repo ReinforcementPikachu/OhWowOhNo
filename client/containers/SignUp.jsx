@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { useSelector, useDispatch } from 'react-redux';
-import { logIn, noUser, selectUserId, selectUsername, selectAuthenticated, selectError } from '../features/userSlice';
+import { newUser, userInDatabase, selectUserId, selectUsername, selectAuthenticated, selectError } from '../features/userSlice';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 
@@ -14,15 +14,15 @@ const SignUp = () => {
 
     const signUpHandler = (event) => {
         event.preventDefault();
-        const username = document.getElementById('loginUsername').value;
-        const pw = document.getElementById('loginPassword').value;
+        const username = document.getElementById('signInUsername').value;
+        const pw = document.getElementById('signInPassword').value;
         // console.log('submitted id===>', username)
         // console.log('submitted pw===>', pw)
         // console.log(newUsername,'state of username before')
         if (username==='chris' && pw ==='chris'){
-            dispatch(logIn({id:1, username:username}))
+            dispatch(newUser())
         } else {
-            dispatch(noUser())
+            dispatch(userInDatabase())
         }
         // console.log(newUsername,'state of username after')
         // console.log(newId, 'state of id after')
@@ -40,20 +40,30 @@ const SignUp = () => {
     return (
         <div className= 'login-wrapper'>
             <h1>Please Sign Up Here</h1>
+            <form onSubmit={signUpHandler}>
             <input
                 className= 'username'
                 name = 'username'
                 type = 'text'
                 placeholder = 'Username'
-                id = 'loginUsername'>
+                id = 'signInUsername'>
             </input>
             <input
                 className= 'password'
                 name = 'password'
                 type = 'text'
                 placeholder = 'Password'
-                id = 'loginPassword'>
+                id = 'signInPassword'>
             </input>
+            <br></br>
+                <button type='submit'>Log In</button>
+            </form>
+            {authenticated && (
+
+                <Navigate to= "/yourfridge" replace = {true}/>
+            )} {error && (
+                <Navigate to="/signup" replace={true} />
+            )}
         </div>
     )
   }

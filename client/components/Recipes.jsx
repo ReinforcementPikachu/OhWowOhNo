@@ -1,11 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { selectSaved } from '../features/recipeSlice';
+import SavedRecipe from './SavedRecipe.jsx';
 
 
 const Recipes = () => {
-    return(
+    const savedRecipes = useSelector(selectSaved);
+    console.log('nice recipes man', savedRecipes)
+
+    return (
         <div>
-            <p>Saved recipes...</p>
+            <h3>Saved recipes...</h3>
+            {savedRecipes.map((saved, i) => <SavedRecipe key={`s${i}`} saved={saved}/>)}
         </div>
     )
 };
