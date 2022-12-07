@@ -22,6 +22,7 @@ const Fridge = () => {
     const foodForm = useRef(null);
     const recipeForm = useRef(null)
 
+
     console.log('userId in fridge', fridgeUserId)
     console.log('username in fridge', fridgeUsername)
 
@@ -44,15 +45,34 @@ const Fridge = () => {
 
     const getRecipes = (event) => {
         event.preventDefault();
-        dispatch(returnedRecipes(['cool recipe', 'nice recipe', 'good recipe']))
-        console.log(recipes)
+        const recipes = [];
+        const ingredientString = ingredients.map((food, i) =>  {
+            if (i === 0) {
+              return `${food}`;
+            }
+            else {
+              return `,+${food}`;
+            }
+          }).join('');  
+        console.log(ingredientString)      
+        axios.get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredientString}2&apiKey=15c00d5acae5495da6ea18181883f034`)
+        .then(res => {
+            const recipeId = res.data.map(recipe => {recipe.id})
+            console.log(recipeId, 'recipeId')
+            return recipeId; 
+        })
+        .then(array => {
+            for (let i = 0; i < array.length; i++) {
+                axios.get(`https://api.spoonacular.com/recipes/${array[i].id}/information?includeNutrition=false&apiKey=15c00d5acae5495da6ea18181883f034`)
+                .then(res => recipes.push({ url: res.data.sourceUrl, title: res.data.title, }))
+                }
+            })
+        .catch(err => console.log(err))
+        
+        console.log(recipes, 'recipes')
+        dispatch(returnedRecipes(recipes))
         dispatch(clearIngredients())
         recipeForm.current.reset();
-        axios.post('api/fridge/getRecipes', { ingredients })
-        .then(res => {
-            //addRecipe(res.data)
-            console.log(res.data)
-        })
     }
 
     return  (

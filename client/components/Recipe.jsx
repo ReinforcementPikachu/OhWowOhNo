@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addRecipe, selectSaved } from '../features/recipeSlice';
 
 const Recipe = (props) => {
-    const { recipe } = props;
+    const { title, url } = props.recipe;
+    console.log(props)
     const dispatch = useDispatch();
 
     const handleRecipe = () => {
@@ -13,7 +14,9 @@ const Recipe = (props) => {
 
     return (
         <div className='individualRecipe'>
-            <p>{recipe}</p>
+            <p>{title}</p>
+            <br/>
+            <p>{url}</p>
             <button onClick={handleRecipe}>Add Recipe</button>
         </div>
     )
