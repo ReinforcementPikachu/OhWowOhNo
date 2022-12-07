@@ -5,10 +5,22 @@ const userController = {};
 userController.signup = async (req, res, next) => {
   console.log('i am signup middleware');
   const { username, password } = req.body;
-  const insert = `INSERT INTO Users (username, password) VALUES('${username}', '${password}')`;
+  //check if user exists 
+  //if exists send back 'username already exists"
+  //else create user
   try {
-    const newUser = await db.query(insert);
-    return next();
+    const query = `SELECT username from Users WHERE username = '${username}'`;
+    const existingUsername = await db.query(query);
+    console.log('i am existingUsername', existingUsername.rows)
+    if(!existingUsername.rows.length) {
+      const insert = `INSERT INTO Users (username, password) VALUES('${username}', '${password}')`;
+      const newUser = await db.query(insert);
+      res.locals.newUser = 'User created';
+      return next();
+    } else {
+      res.locals.newUser = existingUsername.rows[0];
+      return next();
+    }
   }
   catch (err) {
     return next({

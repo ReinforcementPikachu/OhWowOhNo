@@ -6,8 +6,7 @@ const userRouter = express.Router();
 userRouter.post('/signup',
   userController.signup,
   (req, res) => {
-    res.locals.message = 'user created!'
-    res.status(201).json(res.locals.message)
+    res.status(201).json(res.locals.newUser)
   }
 );
 
