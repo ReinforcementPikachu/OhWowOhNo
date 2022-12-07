@@ -3,7 +3,7 @@ const db = require('../models/dbModel');
 const fridgeController = {};
 
 fridgeController.getFridge = async (req, res, next) => {
-  // console.log('i am getRecipe middleware');
+  // console.log('i am getFridge middleware');
   const { id } = req.params;
   //need to send back in array
   const query = `SELECT ingredient from Fridge WHERE user_id = '${id}'`;
