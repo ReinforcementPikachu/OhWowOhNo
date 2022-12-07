@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { newUser, userInDatabase, selectUserId, selectUsername, selectAuthenticated, selectError, selectSignup } from '../features/userSlice';
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 
 const SignUp = () => {
     const newId = useSelector(selectUserId);
@@ -24,8 +24,7 @@ const SignUp = () => {
             alert('Successful sign up, please log in now!')
             dispatch(newUser())
         } else {
-            alert('Looks like that username already exists, please try to log in again')
-            dispatch(userInDatabase())
+            alert('Looks like that username already exists. Please go back to login and try again')
         }
     }
         // console.log(newUsername,'state of username after')
@@ -43,6 +42,7 @@ const SignUp = () => {
         // )
     return (
         <div className= 'login-wrapper'>
+            <form onSubmit={signUpHandler}>
             <h1>Please Sign Up Here</h1>
             <form onSubmit={signUpHandler}>
             <input
@@ -60,15 +60,12 @@ const SignUp = () => {
                 placeholder = 'Password'
                 id = 'signInPassword'>
             </input>
-            <br></br>
-                <button type='submit'>Log In</button>
+            <button type='submit'>Sign up here!</button>
             </form>
-            {signedIn && (
-                <Navigate to= "/login" replace = {true}/>
-            )} 
-            {error && (
-                <Navigate to= "/login" replace = {true}/>
-            )} 
+            <Link to="/login"><button>Back to Login page</button></Link>
+            {authenticated && (
+                <Navigate to= "/yourfridge" replace = {true}/>
+            )}
         </div>
     )
 }

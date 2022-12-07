@@ -24,8 +24,8 @@ const Login = () => {
         if (username==='chris' && pw ==='chris'){
             dispatch(logIn({id:1, username:username}))
         } else {
-            alert('It appears there was an issue with your username or password. Try again or sign up')
-            dispatch(noUser())
+            alert('Oh no, your username or log in is not correct')
+            // dispatch(noUser())
         }
         // console.log(newUsername,'state of username after')
         // console.log(newId, 'state of id after')

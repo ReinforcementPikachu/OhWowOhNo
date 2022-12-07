@@ -14,8 +14,11 @@ userController.signup = async (req, res, next) => {
     console.log('i am existingUsername', existingUsername.rows)
     if(!existingUsername.rows.length) {
       const insert = `INSERT INTO Users (username, password) VALUES('${username}', '${password}')`;
-      const newUser = await db.query(insert);
-      res.locals.newUser = 'User created';
+      const idQuery = `select user_id from Users where username = '${username}'`
+      await db.query(insert);
+      const userId = await db.query(idQuery)
+      console.log(userId, 'userId')
+      res.locals.newUser = userId.rows[0];
       return next();
     } else {
       res.locals.newUser = existingUsername.rows[0];
