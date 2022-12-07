@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const FridgeNav = () => {
     return (
-        <div>
+        <div className='fridgeNav-wrapper'>
             <Link to="/yourfridge"><button>Your Fridge</button></Link>
             <Link to="/yourfridge/recipes"><button>Your Recipes</button></Link>
         </div>

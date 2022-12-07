@@ -10,7 +10,7 @@ import FridgePage from './containers/FridgePage.jsx';
 const App = () => {
     return (
          <div>
-            <NavBar />
+            <NavBar/>
                 <div>
                 <Routes>
                     <Route path="/signup/" element={<SignUp />} />
