@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState, useRef} from 'react';
 import ReactDOM from 'react-dom'
 import axios from 'axios';
@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addItem, deleteItem, createFood, selectFood, selectContents, selectIngredients, clearIngredients } from '../features/fridgeSlice'
 import { selectRecipes, returnedRecipes } from '../features/recipeSlice';
 import Food from './Food.jsx';
+import { selectUserId, selectUsername } from '../features/userSlice';
+
 import Recipe from './Recipe.jsx';
 
 
@@ -13,11 +15,21 @@ const Fridge = () => {
     const newFood = useSelector(selectFood);
     const contents = useSelector(selectContents);
     const ingredients = useSelector(selectIngredients);
+    const fridgeUserId = useSelector(selectUserId)
+    const fridgeUsername = useSelector(selectUsername)
     const recipes = useSelector(selectRecipes);
     const dispatch = useDispatch();
     const foodForm = useRef(null);
     const recipeForm = useRef(null)
 
+    console.log('userId in fridge', fridgeUserId)
+    console.log('username in fridge', fridgeUsername)
+
+    useEffect(()=>{
+        axios.get(`/api/fridge/${fridgeUserId}`)
+        .then(res => console.log(res.data))
+    })
+    
     const addFood = (event) => {
         event.preventDefault();
         dispatch(addItem(newFood));
@@ -36,7 +48,7 @@ const Fridge = () => {
     }
 
     return  (
-        <div class='container'>
+        <div className='container'>
             <div className='fridge-wrapper'>
                 <form ref={recipeForm}>
                     {contents.map((food, i) => <Food key={`f${i}`} food={food}/>)}
@@ -52,7 +64,6 @@ const Fridge = () => {
                     onChange={e => dispatch(createFood(e.target.value))}/>
                 </form>
                 <button onClick={addFood}>Add</button>
-                <br/>
                 <button className='recipeButton' onClick={getRecipes}>Get recipes</button>
             </div>
             <div className='recipes-wrapper'>

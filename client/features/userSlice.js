@@ -12,7 +12,7 @@ export const userSlice = createSlice({
     reducers: {
         logIn: (state, action) => {
             console.log(action)
-            state.userId = action.payload.id,
+            state.userId = action.payload.user_id,
             state.username = action.payload.username,
             state.authenticated = true
             state.error = false
