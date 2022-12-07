@@ -6,7 +6,7 @@ const fridgeRouter = express.Router();
 fridgeRouter.get('/:id',
   fridgeController.getFridge,
   (req, res) => {
-    // console.log('I am in the GET fridgeRouter')
+    console.log('I am in the GET fridgeRouter')
     res.status(200).json(res.locals.fridge);
   }
 );
