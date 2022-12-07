@@ -65,7 +65,7 @@ const SignUp = () => {
             <input
                 className= 'password'
                 name = 'password'
-                type = 'text'
+                type = 'password'
                 placeholder = 'Password'
                 id = 'loginPassword'>
             </input>
