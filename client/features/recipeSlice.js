@@ -15,11 +15,14 @@ export const recipeSlice = createSlice({
             if (!state.savedRecipes.includes(action.payload)) {
                 state.savedRecipes.push(action.payload)
             }
+        },
+        deleteRecipe: (state, action) => {
+            state.savedRecipes = state.savedRecipes.filter(item => item !== action.payload)
         }
     }
 })
 
-export const { returnedRecipes, addRecipe } = recipeSlice.actions;
+export const { returnedRecipes, addRecipe, deleteRecipe } = recipeSlice.actions;
 export const selectRecipes = (state) => state.recipes.recipeArray;
 export const selectSaved = (state) => state.recipes.savedRecipes;
 

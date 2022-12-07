@@ -23,7 +23,6 @@ const Fridge = () => {
         dispatch(addItem(newFood));
         foodForm.current.value = '';
     }
-
     const getRecipes = (event) => {
         event.preventDefault();
         dispatch(returnedRecipes(['cool recipe', 'nice recipe', 'good recipe']))

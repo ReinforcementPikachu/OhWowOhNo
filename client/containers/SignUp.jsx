@@ -16,12 +16,14 @@ const SignUp = () => {
         event.preventDefault();
         const username = document.getElementById('signInUsername').value;
         const pw = document.getElementById('signInPassword').value;
-        // console.log('submitted id===>', username)
-        // console.log('submitted pw===>', pw)
+        console.log('submitted id===>', username)
+        console.log('submitted pw===>', pw)
         // console.log(newUsername,'state of username before')
         if (username==='chris' && pw ==='chris'){
+            alert('Successful sign up, please log in now!')
             dispatch(newUser())
         } else {
+            alert('Looks like that username already exists, please try to log in again')
             dispatch(userInDatabase())
         }
         // console.log(newUsername,'state of username after')
@@ -58,12 +60,11 @@ const SignUp = () => {
             <br></br>
                 <button type='submit'>Log In</button>
             </form>
-            {authenticated && (
-
-                <Navigate to= "/yourfridge" replace = {true}/>
+            {/* {authenticated && (
+                <Navigate to= "/login" replace = {true}/>
             )} {error && (
-                <Navigate to="/signup" replace={true} />
-            )}
+                <Navigate to="/login" replace={true} />
+            )} */}
         </div>
     )
   }
