@@ -23,12 +23,17 @@ button {
     h1 {
         text-align: center;
         margin-bottom: 25%;
+        background-color: $lighter-color;
     }
     border: 1px solid $button-color;
     form {
         box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; 
         padding: 5%;
         margin: .5%;
+        background-color: $lighter-color;
+        input {
+            background-color: $lighter-color;
+        }
     }
     padding: 2%;
     button {
