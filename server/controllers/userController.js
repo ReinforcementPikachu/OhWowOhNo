@@ -15,12 +15,12 @@ userController.signup = async (req, res, next) => {
     const existingUsername = await db.query(query);
     console.log('i am existingUsername', existingUsername.rows);
     if (!existingUsername.rows.length) {
-      const insert = `INSERT INTO Users (username, password) VALUES('${username}', '${hashedPassword}')`;
+      const insert = `INSERT INTO Users (username, password) VALUES('${username}', '${password}')`;
       const idQuery = `select user_id from Users where username = '${username}'`;
       await db.query(insert);
       const userId = await db.query(idQuery);
       console.log(userId, 'userId');
-      res.locals.newUser = userId.rows[0];
+      res.locals.newUser = userId.rows[0]
       return next();
     } else {
       res.locals.newUser = existingUsername.rows[0];
@@ -41,7 +41,7 @@ userController.login = async (req, res, next) => {
   console.log('i am login middleware');
   const { username, password } = req.body;
   const hashedPassword = await argon2.hash(password);
-  const query = `SELECT user_id, username from Users WHERE username = '${username}' and password = '${hashedPassword}'`;
+  const query = `SELECT user_id, username from Users WHERE username = '${username}' and password = '${password}'`;
   try {
     const found = await db.query(query);
     //need to send back id and username

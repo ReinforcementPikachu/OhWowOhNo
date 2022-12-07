@@ -3,10 +3,8 @@ const db = require('../models/dbModel');
 const recipeController = {};
 
 //get saved recipes from db
-recipeController.getRecipes = async (req, res, next) => {
-  console.log('i am getRecipes middleware');
-  //pull user
-  const { user_id } = req.body;
+recipeController.getRecipes = async (req, res, next) => {  //pull user
+  const { user_id } = req.params;
   console.log(user_id);
   const query = `SELECT * from Recipe WHERE user_id = '${user_id}'`;
   try {
@@ -27,9 +25,9 @@ recipeController.getRecipes = async (req, res, next) => {
 };
 
 recipeController.addRecipe = async (req, res, next) => {
-  const { name, image, url, user_id } = req.body;
+  const name = req.body.recipe;
   console.log(req.body);
-  const query = `INSERT INTO Recipes ('user_id', 'name', 'image', 'url') VALUES('${user_id}', '${name}', '${image}', '${url}')`;
+  const query = `INSERT INTO Recipes ('id' 'name') VALUES('${user_id}', '${name}')`;
   try{
     const insertion = await db.query(query);
     console.log(insertion);
@@ -45,7 +43,5 @@ recipeController.addRecipe = async (req, res, next) => {
     });
   }
 };
-
-// recipeController.deleteRecipe = async (req, res, next) => {};
 
 module.exports = recipeController;

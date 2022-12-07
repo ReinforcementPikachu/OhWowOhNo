@@ -45,7 +45,8 @@ const Fridge = () => {
 
     const getRecipes = (event) => {
         event.preventDefault();
-        const recipes = [];
+        const recipeArray = [];
+        const recipeIdArray = [];
         const ingredientString = ingredients.map((food, i) =>  {
             if (i === 0) {
               return `${food}`;
@@ -55,22 +56,17 @@ const Fridge = () => {
             }
           }).join('');  
         console.log(ingredientString)      
-        axios.get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredientString}2&apiKey=15c00d5acae5495da6ea18181883f034`)
+        axios.get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredientString}&apiKey=f275a7ebbc2f42d583a70642829cfe07`)
         .then(res => {
-            const recipeId = res.data.map(recipe => {recipe.id})
-            console.log(recipeId, 'recipeId')
-            return recipeId; 
-        })
-        .then(array => {
-            for (let i = 0; i < array.length; i++) {
-                axios.get(`https://api.spoonacular.com/recipes/${array[i].id}/information?includeNutrition=false&apiKey=15c00d5acae5495da6ea18181883f034`)
-                .then(res => recipes.push({ url: res.data.sourceUrl, title: res.data.title, }))
-                }
+            console.log(res.data, 'res.data')
+            res.data.forEach((element)=>{
+                recipeArray.push(element.title)
+                recipeIdArray.push(element.id)
             })
+            dispatch(returnedRecipes(recipeArray)) 
+        })
         .catch(err => console.log(err))
-        
         console.log(recipes, 'recipes')
-        dispatch(returnedRecipes(recipes))
         dispatch(clearIngredients())
         recipeForm.current.reset();
     }

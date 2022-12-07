@@ -29,8 +29,8 @@ const SignUp = () => {
             password: pw
         }).then((res => {
             if (res.data){
-                console.log(res.data)
-                dispatch(logIn(res.data))
+                console.log(res.data, 'signup res.data')
+                dispatch(logIn({user_id:res.data.user_id.user_id, username: username}))
             }
         })).catch((error) => {
                 alert('This username already exist, please try a different username or return to login page')
