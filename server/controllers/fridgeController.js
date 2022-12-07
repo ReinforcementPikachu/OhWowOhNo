@@ -4,7 +4,7 @@ const axios = require('axios')
 const fridgeController = {};
 
 fridgeController.getFridge = async (req, res, next) => {
-  console.log('i am getFridge middleware');
+  // console.log('i am getFridge middleware');
   const { id } = req.params;
   //need to send back in array
   const query = `SELECT ingredient from Fridge WHERE user_id = '${id}'`;
@@ -31,12 +31,11 @@ fridgeController.getFridge = async (req, res, next) => {
 };
 
 fridgeController.addIngredient = async (req, res, next) => {
-  console.log('i am addIngredient middleware');
+  // console.log('i am addIngredient middleware');
   const { user_id, ingredient } = req.body;
   // console.log('i am ingredient', ingredient)
-  
   try {
-    const insertQuery = `INSERT INTO Fridge VALUES(${user_id}, DEFAULT, '${ingredient}')`
+    const insertQuery = `INSERT INTO Fridge VALUES(${user_id}, DEFAULT, '${ingredient}')`;
     await db.query(insertQuery)
     res.locals.ingredient = 'Ingredient Added';
     return next();
@@ -51,39 +50,6 @@ fridgeController.addIngredient = async (req, res, next) => {
     });
   }
 };
-
-//beginning of API call
-fridgeController.getRecipes = async (req, res, next) => {
-  try {
-    console.log(req.body)
-    const { ingredients } = req.body;
-    const ingredientString = ingredients.map((food, i) =>  {
-      if (i === 0) {
-        return `${food}`;
-      }
-      else {
-        return `,+${food}`;
-      }
-    }).join('');
-    console.log(ingredientString)
-    let reqInstance = axios.create ({headers: { 'x-api-key': '15c00d5acae5495da6ea18181883f034' }})
-    reqInstance.get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2`)
-    .then(res => {console.log(res.data)})
-    return next()
-  }
-  catch(err) {
-    return next({
-      log: `fridgeController.js: ERROR: ${err}`,
-      status: 500,
-      message: {
-        err: 'An error occurred in fridgeController.getRecipes middleware',
-      },
-    })
-  }
-  
-};
-
-// fridgeController.deleteIngredient = async (req, res, next) => {};
 
 module.exports = fridgeController;
 
