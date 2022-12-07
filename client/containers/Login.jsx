@@ -24,7 +24,8 @@ const Login = () => {
         if (username==='chris' && pw ==='chris'){
             dispatch(logIn({id:1, username:username}))
         } else {
-            dispatch(noUser())
+            alert('Oh no, your username or log in is not correct')
+            // dispatch(noUser())
         }
         // console.log(newUsername,'state of username after')
         // console.log(newId, 'state of id after')
@@ -64,8 +65,8 @@ const Login = () => {
             </form>
             {authenticated && (
                 <Navigate to= "/yourfridge" replace = {true}/>
-            )} {error && (
-                <Navigate to="/signup" replace={true} />
+            // )} {error && (
+            //     <Navigate to="/login" replace={true} />
             )}
         </div>
     )
