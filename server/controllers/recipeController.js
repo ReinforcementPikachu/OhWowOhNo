@@ -5,7 +5,7 @@ const recipeController = {};
 // recipeController.getRecipe = async (req, res, next) => {
 //   console.log('i am getRecipe middleware');
 //   const { user_id } = req.body;
-//   const query = ;
+//   const query = `SELECT * from Recipe WHERE user_id = '${user_id}'`;;
 //   try {
 //     const recipes = await db.query(query);
 //     res.locals.recipes = recipes;
@@ -21,5 +21,9 @@ const recipeController = {};
 //     });
 //   }
 // };
+
+// recipeController.saveRecipe = async (req, res, next) => {};
+
+// recipeController.deleteRecipe = async (req, res, next) => {};
 
 module.exports = recipeController;

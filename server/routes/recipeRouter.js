@@ -19,4 +19,12 @@ const recipeRouter = express.Router();
 //   }
 // );
 
+// recipeRouter.delete('/recipe',
+//   recipeController.deleteRecipe,
+//   (req, res) => {
+//     res.locals.message = 'recipe deleted!'
+//     res.status(201).json(res.locals.message)
+//   }
+// );
+
 module.exports = recipeRouter;
