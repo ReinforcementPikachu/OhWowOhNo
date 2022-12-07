@@ -24,8 +24,9 @@ const Fridge = () => {
 
     useEffect(()=>{
         axios.get(`/api/fridge/${fridgeUserId}`)
-        .then
+        .then(res => console.log(res.data))
     })
+    
     const addFood = (event) => {
         event.preventDefault();
         dispatch(addItem(newFood));
