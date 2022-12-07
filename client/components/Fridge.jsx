@@ -27,14 +27,19 @@ const Fridge = () => {
 
     useEffect(()=>{
         axios.get(`/api/fridge/${fridgeUserId}`)
-        .then(res => console.log(res.data))
-    })
+        .then(res => dispatch(addItem(...res.data)))
+        .catch(err => console.log(err))
+    }, [])
     
     const addFood = (event) => {
         event.preventDefault();
         dispatch(addItem(newFood));
+        axios.post('api/fridge', { user_id: fridgeUserId, ingredient: newFood })
+        .then(res => console.log ('request successful'))
+        .catch(err => console.log(err))
         foodForm.current.value = '';
     }
+
     const getRecipes = (event) => {
         event.preventDefault();
         dispatch(returnedRecipes(['cool recipe', 'nice recipe', 'good recipe']))
