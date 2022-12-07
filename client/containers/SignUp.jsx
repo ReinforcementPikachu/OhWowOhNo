@@ -26,6 +26,7 @@ const SignUp = () => {
             alert('Looks like that username already exists, please try to log in again')
             dispatch(userInDatabase())
         }
+    }
         // console.log(newUsername,'state of username after')
         // console.log(newId, 'state of id after')
         // axios.post('/api/user', {
@@ -50,6 +51,7 @@ const SignUp = () => {
                 placeholder = 'Username'
                 id = 'signInUsername'>
             </input>
+            <br></br>
             <input
                 className= 'password'
                 name = 'password'
@@ -60,13 +62,10 @@ const SignUp = () => {
             <br></br>
                 <button type='submit'>Log In</button>
             </form>
-            {/* {authenticated && (
+            {error && (
                 <Navigate to= "/login" replace = {true}/>
-            )} {error && (
-                <Navigate to="/login" replace={true} />
-            )} */}
+            )} 
         </div>
     )
-  }
 }
 export default SignUp;

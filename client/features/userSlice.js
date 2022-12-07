@@ -25,7 +25,7 @@ export const userSlice = createSlice({
             state.authenticated = false
         }, 
         newUser: (state) => {
-            state.authenticated = true
+            state.error = true;
         },
         userInDatabase: (state,action) => {
             state.error = true,
