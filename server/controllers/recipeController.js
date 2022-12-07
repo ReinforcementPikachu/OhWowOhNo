@@ -31,7 +31,15 @@ recipeController.addRecipe = async (req, res, next) => {
   console.log(req.body);
   const query = `INSERT INTO Recipes ('user_id', 'name', 'image', 'url') VALUES('${user_id}', '${name}', '${image}', '${url}')`;
   try{
-    const insertion = db.query(query);
+    const insertion = await db.query(query);
+  } catch(err){
+    return next({
+      log: `recipeController.js: ERROR: ${err}`,
+      status: 500,
+      message: {
+        err: 'An error occurred in recipeController.getRecipe middleware'
+      }
+    });
   }
 };
 
