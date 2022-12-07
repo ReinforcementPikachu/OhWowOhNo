@@ -12,14 +12,13 @@ export const fridgeSlice = createSlice({
             state.fridgeList.push(action.payload);
         },
         deleteItem: (state, action) => {
-            state.fridgeList.filter(item => item !== action.payload)
+            state.fridgeList = state.fridgeList.filter(item => item !== action.payload)
         },
 
         createFood: (state, action) => {
             state.food = action.payload
         },
         addIngredient: (state, action) => {
-            console.log(action.payload)
             if (!state.ingredientList.includes(action.payload)) {
                 state.ingredientList.push(action.payload)
             }

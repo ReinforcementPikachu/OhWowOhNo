@@ -24,7 +24,8 @@ const Login = () => {
         if (username==='chris' && pw ==='chris'){
             dispatch(logIn({id:1, username:username}))
         } else {
-            dispatch(noUser())
+            alert('Oh no, your username or log in is not correct')
+            // dispatch(noUser())
         }
         // console.log(newUsername,'state of username after')
         // console.log(newId, 'state of id after')
@@ -42,8 +43,8 @@ const Login = () => {
     }
     return (
         <div className= 'login-wrapper'>
+            <form>
             <h1>Please Log In</h1>
-            <form onSubmit={loginHandler}>
                 <input
                     className= 'username'
                     name = 'username'
@@ -60,12 +61,12 @@ const Login = () => {
                     id = 'loginPassword'>
                 </input>
                 <br></br>
-                <button type='submit'>Log In</button>
             </form>
+            <button onClick={loginHandler}>Log In</button>
             {authenticated && (
                 <Navigate to= "/yourfridge" replace = {true}/>
             )} {error && (
-                <Navigate to="/signup" replace={true} />
+                <Navigate to="/login" replace={true} />
             )}
         </div>
     )
