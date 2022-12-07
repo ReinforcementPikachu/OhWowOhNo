@@ -11,7 +11,6 @@ const SignUp = () => {
     const authenticated = useSelector(selectAuthenticated);
     const error = useSelector(selectError);
     const dispatch = useDispatch();
-
     const signUpHandler = (event) => {
         event.preventDefault();
         const username = document.getElementById('loginUsername').value;
@@ -53,7 +52,7 @@ const SignUp = () => {
         // )
     return (
         <div className= 'login-wrapper'>
-            <form onSubmit={signUpHandler}>
+            <form>
             <h1>Please Sign Up Here</h1>
             <input
                 className= 'username'
@@ -62,6 +61,7 @@ const SignUp = () => {
                 placeholder = 'Username'
                 id = 'loginUsername'>
             </input>
+            <br/>
             <input
                 className= 'password'
                 name = 'password'
@@ -69,8 +69,9 @@ const SignUp = () => {
                 placeholder = 'Password'
                 id = 'loginPassword'>
             </input>
-            <button type='submit'>Sign up here!</button>
+            <br/>
             </form>
+            <button onClick={signUpHandler}>Sign up here!</button>
             <Link to="/login"><button>Back to Login page</button></Link>
             {authenticated && (
                 <Navigate to= "/yourfridge" replace = {true}/>

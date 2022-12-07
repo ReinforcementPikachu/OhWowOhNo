@@ -46,8 +46,8 @@ const Login = () => {
     }
     return (
         <div className= 'login-wrapper'>
+            <form>
             <h1>Please Log In</h1>
-            <form onSubmit={loginHandler}>
                 <input
                     className= 'username'
                     name = 'username'
@@ -64,12 +64,12 @@ const Login = () => {
                     id = 'loginPassword'>
                 </input>
                 <br></br>
-                <button type='submit'>Log In</button>
             </form>
+            <button onClick={loginHandler}>Log In</button>
             {authenticated && (
                 <Navigate to= "/yourfridge" replace = {true}/>
-            // )} {error && (
-            //     <Navigate to="/login" replace={true} />
+            )} {error && (
+                <Navigate to="/login" replace={true} />
             )}
         </div>
     )
