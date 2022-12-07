@@ -36,7 +36,7 @@ const Fridge = () => {
     }
 
     return  (
-        <div class='container'>
+        <div className='container'>
             <div className='fridge-wrapper'>
                 <form ref={recipeForm}>
                     {contents.map((food, i) => <Food key={`f${i}`} food={food}/>)}
@@ -52,7 +52,6 @@ const Fridge = () => {
                     onChange={e => dispatch(createFood(e.target.value))}/>
                 </form>
                 <button onClick={addFood}>Add</button>
-                <br/>
                 <button className='recipeButton' onClick={getRecipes}>Get recipes</button>
             </div>
             <div className='recipes-wrapper'>
