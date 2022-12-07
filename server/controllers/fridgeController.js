@@ -3,7 +3,7 @@ const db = require('../models/dbModel');
 const fridgeController = {};
 
 fridgeController.getFridge = async (req, res, next) => {
-  console.log('i am getRecipe middleware');
+  // console.log('i am getRecipe middleware');
   const { id } = req.params;
   //need to send back in array
   const query = `SELECT ingredient from Fridge WHERE user_id = '${id}'`;
@@ -30,12 +30,11 @@ fridgeController.getFridge = async (req, res, next) => {
 };
 
 fridgeController.addIngredient = async (req, res, next) => {
-  console.log('i am addIngredient middleware');
+  // console.log('i am addIngredient middleware');
   const { user_id, ingredient } = req.body;
   // console.log('i am ingredient', ingredient)
-  
   try {
-    const insertQuery = `INSERT INTO Fridge VALUES(${user_id}, DEFAULT, '${ingredient}')`
+    const insertQuery = `INSERT INTO Fridge VALUES(${user_id}, DEFAULT, '${ingredient}')`;
     await db.query(insertQuery)
     res.locals.ingredient = 'Ingredient Added';
     return next();
@@ -51,34 +50,24 @@ fridgeController.addIngredient = async (req, res, next) => {
   }
 };
 
-//beginning of API call
-// fridgeController.addIngredient = async (req, res, next) => {
-//   console.log('i am addIngredient middleware');
-//   const { user_id, ingredients } = req.body;
-//   console.log('i am ingredients', ingredients)
-  
-//   try {
-//     for (let i = 0; i < ingredients.length; i++) {
-//       const insertQuery = `INSERT INTO Fridge VALUES(${user_id}, DEFAULT, '${ingredients[i]}')`
-//       await db.query(insertQuery)
-//       console.log(ingredients[i], 'inside the for loop')
-//     };
-//     const userFridge = await db.query(`SELECT ingredient from Fridge WHERE user_id = '${user_id}'`);
-//     console.log('i am userFridge', userFridge.rows)
-//     res.locals.ingredient = userFridge.rows[0].ingredient;
-//     return next();
-//   }
-//   catch (err) {
-//     return next({
-//       log: `fridgeController.js: ERROR: ${err}`,
-//       status: 400,
-//       message: {
-//         err: 'An error occurred in fridgeController.addIngredient middleware',
-//       },
-//     });
-//   }
-// };
-
-// fridgeController.deleteIngredient = async (req, res, next) => {};
+fridgeController.deleteIngredient = async (req, res, next) => {
+  // console.log('i am deleteIngredient middleware');
+  const { user_id, ingredient } = req.body;
+  try {
+    const deleteQuery = `DELETE FROM Fridge WHERE user_id=${user_id} AND ingredient='${ingredient}'`;
+    await db.query(deleteQuery)
+    res.locals.ingredient = 'Ingredient Deleted';
+    return next();
+  }
+  catch (err) {
+    return next({
+      log: `fridgeController.js: ERROR: ${err}`,
+      status: 400,
+      message: {
+        err: 'An error occurred in fridgeController.deleteIngredient middleware',
+      },
+    });
+  }
+};
 
 module.exports = fridgeController;
