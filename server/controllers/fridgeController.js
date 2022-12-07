@@ -53,8 +53,7 @@ fridgeController.addIngredient = async (req, res, next) => {
 };
 
 //beginning of API call
-fridgeController.getRecipes = async (req, res, next) => {
-  try {
+fridgeController.getRecipes = (req, res, next) => {
     console.log(req.body)
     const { ingredients } = req.body;
     const ingredientString = ingredients.map((food, i) =>  {
@@ -65,22 +64,13 @@ fridgeController.getRecipes = async (req, res, next) => {
         return `,+${food}`;
       }
     }).join('');
-    console.log(ingredientString)
-    let reqInstance = axios.create ({headers: { 'x-api-key': '15c00d5acae5495da6ea18181883f034' }})
-    reqInstance.get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2`)
-    .then(res => {console.log(res.data)})
-    return next()
-  }
-  catch(err) {
-    return next({
-      log: `fridgeController.js: ERROR: ${err}`,
-      status: 500,
-      message: {
-        err: 'An error occurred in fridgeController.getRecipes middleware',
-      },
+    //console.log(ingredientString)
+    axios.get('https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2&apiKey=15c00d5acae5495da6ea18181883f034')
+    .then(res => { 
+      console.log('hi to me', res.data)
+      next()
     })
-  }
-  
+    .catch(err => console.log())
 };
 
 // fridgeController.deleteIngredient = async (req, res, next) => {};

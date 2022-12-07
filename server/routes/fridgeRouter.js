@@ -19,15 +19,6 @@ fridgeRouter.post('/',
   }
 );
 
-fridgeRouter.post('/getRecipes',
-  fridgeController.getRecipes,
-  (req, res) => {
-    console.log('I am in the POST fridgeRouter')
-    res.status(200).send('hi');
-  }
-);
-
-
 // fridgeRouter.delete('/delete',
 //   fridgeController.deleteIngredient,
 //   (req, res) => {
