@@ -37,7 +37,7 @@ userController.signup = async (req, res, next) => {
 };
 
 userController.login = async (req, res, next) => {
-  // console.log('i am login middleware');
+  console.log('i am login middleware');
   const { username, password } = req.body;
   const query = `SELECT user_id, username from Users WHERE username = '${username}' and password = '${password}'`;
   try {
