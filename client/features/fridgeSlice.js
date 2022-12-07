@@ -9,7 +9,7 @@ export const fridgeSlice = createSlice({
     },
     reducers: {
         addItem: (state, action) => {
-            state.fridgeList.push(action.payload);
+            state.fridgeList.push(...action.payload);
         },
         deleteItem: (state, action) => {
             state.fridgeList = state.fridgeList.filter(item => item !== action.payload)
