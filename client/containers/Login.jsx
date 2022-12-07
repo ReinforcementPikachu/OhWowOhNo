@@ -65,8 +65,8 @@ const Login = () => {
             </form>
             {authenticated && (
                 <Navigate to= "/yourfridge" replace = {true}/>
-            // )} {error && (
-            //     <Navigate to="/login" replace={true} />
+            )} {error && (
+                <Navigate to="/login" replace={true} />
             )}
         </div>
     )

@@ -9,3 +9,36 @@
     flex-direction: column;
     align-items: center;
 }
+
+.container {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "fridge-wrapper fridge-wrapper add-wrapper add-wrapper"
+      "fridge-wrapper fridge-wrapper add-wrapper add-wrapper"
+      "recipes-wrapper recipes-wrapper recipes-wrapper recipes-wrapper"
+      "recipes-wrapper recipes-wrapper recipes-wrapper recipes-wrapper";
+  }
+  
+  .add-wrapper { grid-area: add-wrapper; }
+  
+  .fridge-wrapper { grid-area: fridge-wrapper; }
+  
+  .recipes-wrapper { grid-area: recipes-wrapper; }
+  
+  .fridgeContainer {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      "fridgeNav fridgeRec fridgeRec fridgeRec"
+      "fridgeNav fridgeRec fridgeRec fridgeRec"
+      "fridgeNav fridgeRec fridgeRec fridgeRec"
+      "fridgeNav fridgeRec fridgeRec fridgeRec"; 
+  }
+  .fridgeNav { grid-area: fridgeNav; }
+  .fridgeRec { grid-area: fridgeRec; }
+  
