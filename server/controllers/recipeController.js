@@ -32,6 +32,9 @@ recipeController.addRecipe = async (req, res, next) => {
   const query = `INSERT INTO Recipes ('user_id', 'name', 'image', 'url') VALUES('${user_id}', '${name}', '${image}', '${url}')`;
   try{
     const insertion = await db.query(query);
+    console.log(insertion);
+    res.locals.insertion = insertion;
+    return next();
   } catch(err){
     return next({
       log: `recipeController.js: ERROR: ${err}`,
