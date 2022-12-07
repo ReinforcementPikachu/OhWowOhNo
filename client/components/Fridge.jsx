@@ -36,8 +36,13 @@ const Fridge = () => {
     }
 
     return  (
-        <div>
-            <div>
+        <div class='container'>
+            <div className='fridge-wrapper'>
+                <form ref={recipeForm}>
+                    {contents.map((food, i) => <Food key={`f${i}`} food={food}/>)}
+                </form>
+            </div>
+            <div className='add-wrapper'>
                 <form onSubmit={addFood}>
                     <input 
                     ref={foodForm}
@@ -47,14 +52,12 @@ const Fridge = () => {
                     onChange={e => dispatch(createFood(e.target.value))}/>
                     <button type='submit'>Add</button>
                 </form>
+                <button onClick={getRecipes}>Get recipes</button>
             </div>
             <div>
-                <form onSubmit={getRecipes} ref={recipeForm}>
-                    {contents.map((food, i) => <Food key={`f${i}`} food={food}/>)}
-                    <button type='submit'>Get recipes</button>
-                </form>
+
             </div>
-            <div>
+            <div className='recipes-wrapper'>
                 {recipes.map((recipe, i) => <Recipe key={`r${i}`} recipe={recipe}/>)}
             </div>
         </div>

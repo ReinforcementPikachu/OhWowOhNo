@@ -8,9 +8,11 @@ import Recipes from '../components/Recipes.jsx'
 
 const FridgePage = () => {
     return (
-        <div>
-            <FridgeNav />
-            <div>
+        <div className='fridgeContainer'>
+            <div className='fridgeNav'>
+                <FridgeNav />
+            </div>
+            <div className='fridgeRec'>
                 <Routes>
                     <Route path="/" element={<Fridge />} />
                     <Route path="/recipes" element={<Recipes />} />

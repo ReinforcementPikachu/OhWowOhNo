@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { useSelector, useDispatch } from 'react-redux';
-import { newUser, userInDatabase, selectUserId, selectUsername, selectAuthenticated, selectError } from '../features/userSlice';
+import { newUser, userInDatabase, selectUserId, selectUsername, selectAuthenticated, selectError, selectSignup } from '../features/userSlice';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 
@@ -9,6 +9,7 @@ const SignUp = () => {
     const newId = useSelector(selectUserId);
     const newUsername = useSelector(selectUsername);
     const authenticated = useSelector(selectAuthenticated);
+    const signedIn = useSelector(selectSignup)
     const error = useSelector(selectError);
     const dispatch = useDispatch();
 
@@ -62,6 +63,9 @@ const SignUp = () => {
             <br></br>
                 <button type='submit'>Log In</button>
             </form>
+            {signedIn && (
+                <Navigate to= "/login" replace = {true}/>
+            )} 
             {error && (
                 <Navigate to= "/login" replace = {true}/>
             )} 
