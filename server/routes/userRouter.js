@@ -13,7 +13,7 @@ userRouter.post('/signup',
 userRouter.post('/login',
   userController.login,
   (req, res) => {
-    // console.log('I am in the userRouter')
+    console.log('I am in the userRouter')
     res.status(200).json(res.locals.user);
   }
 );
