@@ -18,28 +18,31 @@ const Login = () => {
         event.preventDefault();
         const username = document.getElementById('loginUsername').value;
         const pw = document.getElementById('loginPassword').value;
-        // console.log('submitted id===>', username)
-        // console.log('submitted pw===>', pw)
+        console.log('submitted id===>', username)
+        console.log('submitted pw===>', pw)
         // console.log(newUsername,'state of username before')
-        if (username==='chris' && pw ==='chris'){
-            dispatch(logIn({id:1, username:username}))
-        } else {
-            alert('Oh no, your username or log in is not correct')
-            // dispatch(noUser())
-        }
+        // if (username==='chris' && pw ==='chris'){
+        //     dispatch(logIn({id:1, username:username}))
+        // } else {
+        //     alert('Oh no, your username or log in is not correct')
+        //     // dispatch(noUser())
+        // }
         // console.log(newUsername,'state of username after')
         // console.log(newId, 'state of id after')
-        // axios.post('/api/user', {
-        //     username: username,
-        //     password: pw
-        // }).then((res => {
-        //     if (res.data){
-        //         dispatch(logIn(res.data))
-        //     }
-        // })).catch((error) => {
-        //         dispatch(noUser())
-        //     }
-        // )
+        axios.post('/api/user/login', {
+            username: username,
+            password: pw
+        }).then((res => {
+            if (res.data){
+                console.log(res.data, 'res.data')
+                dispatch(logIn(res.data))
+            }
+        })).catch((error) => {
+                alert('That username or password is incorrect or does not exist, please try again or go to our signup page')
+                console.log(username, 'username')
+                console.log(password, 'password')
+            }
+        )
     }
     return (
         <div className= 'login-wrapper'>

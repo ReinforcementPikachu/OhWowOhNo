@@ -19,11 +19,24 @@ const SignUp = () => {
         // console.log('submitted id===>', username)
         // console.log('submitted pw===>', pw)
         // console.log(newUsername,'state of username before')
-        if (username==='chris' && pw ==='chris'){
-            dispatch(logIn({id:1, username:username}))
-        } else {
-            alert('Looks like that username already exists. Please go back to login and try again')
-        }
+        // if (username==='chris' && pw ==='chris'){
+        //     dispatch(logIn({id:1, username:username}))
+        // } else {
+        //     alert('Looks like that username already exists. Please go back to login and try again')
+        //  console.log(newUsername,'state of username after')
+        // console.log(newId, 'state of id after')
+        axios.post('/api/user/signup', {
+            username: username,
+            password: pw
+        }).then((res => {
+            if (res.data){
+                console.log(res.data)
+                dispatch(logIn(res.data))
+            }
+        })).catch((error) => {
+                alert('This username already exist, please try a different username or return to login page')
+            }
+        )
     }
         // console.log(newUsername,'state of username after')
         // console.log(newId, 'state of id after')
