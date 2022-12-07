@@ -12,7 +12,7 @@ const Recipe = (props) => {
     };
 
     return (
-        <div>
+        <div className='individualRecipe'>
             <p>{recipe}</p>
             <button onClick={handleRecipe}>Add Recipe</button>
         </div>

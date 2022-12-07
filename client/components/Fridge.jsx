@@ -43,19 +43,17 @@ const Fridge = () => {
                 </form>
             </div>
             <div className='add-wrapper'>
-                <form onSubmit={addFood}>
+                <form>
                     <input 
                     ref={foodForm}
                     id='foodItem' 
                     type='text' 
                     placeholder='Add food...' 
                     onChange={e => dispatch(createFood(e.target.value))}/>
-                    <button type='submit'>Add</button>
                 </form>
-                <button onClick={getRecipes}>Get recipes</button>
-            </div>
-            <div>
-
+                <button onClick={addFood}>Add</button>
+                <br/>
+                <button className='recipeButton' onClick={getRecipes}>Get recipes</button>
             </div>
             <div className='recipes-wrapper'>
                 {recipes.map((recipe, i) => <Recipe key={`r${i}`} recipe={recipe}/>)}

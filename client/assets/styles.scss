@@ -1,16 +1,32 @@
 * {
     box-sizing: border-box;
-    border: 1px solid black;
+    font-size: 2vh;
 }
-
 
 .login-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    h1 {
+        text-align: center;
+        margin-bottom: 25%;
+    }
+    border: 1px solid black;
+    form {
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; 
+        padding: 5%;
+        margin: .5%;
+    }
+    padding: 2%;
+    button {
+        padding: .5%;
+        margin: .5%
+    }
 }
 
-.container {  display: grid;
+.container {  
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     gap: 0px 0px;
@@ -20,13 +36,35 @@
       "fridge-wrapper fridge-wrapper add-wrapper add-wrapper"
       "recipes-wrapper recipes-wrapper recipes-wrapper recipes-wrapper"
       "recipes-wrapper recipes-wrapper recipes-wrapper recipes-wrapper";
+    border: 1px solid black;
   }
   
-  .add-wrapper { grid-area: add-wrapper; }
+  .add-wrapper { 
+    grid-area: add-wrapper; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10%;
+    border: 1px solid black;
+
+  }
   
-  .fridge-wrapper { grid-area: fridge-wrapper; }
+  .fridge-wrapper { 
+    grid-area: fridge-wrapper;
+    max-height: 40vh;
+    padding: 5% 10% 5% 10%;
+    overflow-y: scroll;
+}
   
-  .recipes-wrapper { grid-area: recipes-wrapper; }
+  .recipes-wrapper { 
+    grid-area: recipes-wrapper; 
+    max-height: 40vh;
+    padding: 1% 20% 1% 20%;
+    overflow-y: scroll;
+    border: 1px solid black;
+
+}
   
   .fridgeContainer {
     display: grid; 
@@ -37,8 +75,72 @@
       "fridgeNav fridgeRec fridgeRec fridgeRec"
       "fridgeNav fridgeRec fridgeRec fridgeRec"
       "fridgeNav fridgeRec fridgeRec fridgeRec"
-      "fridgeNav fridgeRec fridgeRec fridgeRec"; 
+      "fridgeNav fridgeRec fridgeRec fridgeRec";
+    border: 1px solid black;
+ 
   }
-  .fridgeNav { grid-area: fridgeNav; }
-  .fridgeRec { grid-area: fridgeRec; }
+
+  .fridgeNav { 
+    grid-area: fridgeNav; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10%;
+    border: 1px solid black;
+
+}
+  .fridgeRec { 
+    grid-area: fridgeRec; 
+}
+
+  .navBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5%;
+    border: 1px solid black;
+
+  }
   
+  .fridgeNav-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .savedRecipes {
+    padding: 5%;
+    h3 {
+        text-align: center;
+    }
+  }
+
+  .foodWrapper {
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; 
+    label {
+        font-size: 1.2rem;
+    }
+    padding: 3%;
+    margin: 1%;
+    width: 50%;
+}
+
+.individualRecipe {
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; 
+    p {
+        font-size: 1.2rem;
+    }
+    padding: 1%;
+    margin: 1%;
+}
+
+.individualSaved {
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; 
+    p {
+        font-size: 1.2rem;
+    }
+    padding: 1%;
+    margin: 1%;
+}

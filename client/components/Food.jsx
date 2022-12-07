@@ -24,9 +24,10 @@ const Food = (props) => {
     }
 
     return (
-        <div onClick={foodClicked}>
+        <div className='foodWrapper' onClick={foodClicked}>
             <input type='checkbox' id={food} name={food} value={food} onChange={(e) => handleChange(e)}/>
             <label htmlFor={food}>{food}</label>
+            <br/>
             {toggle && (<button onClick={deleteFood}>Delete Food</button>)}
         </div>
     )

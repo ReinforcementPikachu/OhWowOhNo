@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { useSelector, useDispatch } from 'react-redux';
-import { newUser, userInDatabase, selectUserId, selectUsername, selectAuthenticated, selectError, selectSignup } from '../features/userSlice';
+import { logIn, noUser, selectUserId, selectUsername, selectAuthenticated, selectError } from '../features/userSlice';
 import axios from 'axios';
 import { Navigate, Link } from 'react-router-dom';
 
@@ -9,20 +9,17 @@ const SignUp = () => {
     const newId = useSelector(selectUserId);
     const newUsername = useSelector(selectUsername);
     const authenticated = useSelector(selectAuthenticated);
-    const signedIn = useSelector(selectSignup)
     const error = useSelector(selectError);
     const dispatch = useDispatch();
-
     const signUpHandler = (event) => {
         event.preventDefault();
-        const username = document.getElementById('signInUsername').value;
-        const pw = document.getElementById('signInPassword').value;
-        console.log('submitted id===>', username)
-        console.log('submitted pw===>', pw)
+        const username = document.getElementById('loginUsername').value;
+        const pw = document.getElementById('loginPassword').value;
+        // console.log('submitted id===>', username)
+        // console.log('submitted pw===>', pw)
         // console.log(newUsername,'state of username before')
         if (username==='chris' && pw ==='chris'){
-            alert('Successful sign up, please log in now!')
-            dispatch(newUser())
+            dispatch(logIn({id:1, username:username}))
         } else {
             alert('Looks like that username already exists. Please go back to login and try again')
         }
@@ -42,26 +39,26 @@ const SignUp = () => {
         // )
     return (
         <div className= 'login-wrapper'>
-            <form onSubmit={signUpHandler}>
+            <form>
             <h1>Please Sign Up Here</h1>
-            <form onSubmit={signUpHandler}>
             <input
                 className= 'username'
                 name = 'username'
                 type = 'text'
                 placeholder = 'Username'
-                id = 'signInUsername'>
+                id = 'loginUsername'>
             </input>
-            <br></br>
+            <br/>
             <input
                 className= 'password'
                 name = 'password'
                 type = 'text'
                 placeholder = 'Password'
-                id = 'signInPassword'>
+                id = 'loginPassword'>
             </input>
-            <button type='submit'>Sign up here!</button>
+            <br/>
             </form>
+            <button onClick={signUpHandler}>Sign up here!</button>
             <Link to="/login"><button>Back to Login page</button></Link>
             {authenticated && (
                 <Navigate to= "/yourfridge" replace = {true}/>

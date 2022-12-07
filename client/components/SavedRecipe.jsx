@@ -14,7 +14,7 @@ const SavedRecipe = (props) => {
     };
 
     return (
-        <div>
+        <div className='individualSaved'>
             <p>{saved}</p>
             <button onClick={deleteSaved}>Delete Recipe</button>
         </div>
