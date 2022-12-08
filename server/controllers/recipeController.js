@@ -25,12 +25,13 @@ recipeController.getRecipes = async (req, res, next) => {
 };
 
 recipeController.addRecipe = async (req, res, next) => {
-  const { name, image, url, user_id } = req.body;
+  const name = req.body.recipe;
   console.log(req.body);
-  const query = `INSERT INTO Recipes VALUES('${user_id}', DEFAULT, '${name}', '${image}', '${url}')`;
+  const query = `INSERT INTO Recipes ('id' 'name') VALUES('${user_id}', '${name}')`;
   try{
-    await db.query(query);
-    res.locals.recipe = 'Recipe Added';
+    const insertion = await db.query(query);
+    console.log(insertion);
+    res.locals.insertion = insertion;
     return next();
   } catch(err){
     return next({

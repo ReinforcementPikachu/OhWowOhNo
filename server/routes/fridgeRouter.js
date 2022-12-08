@@ -19,12 +19,4 @@ fridgeRouter.post('/',
   }
 );
 
-fridgeRouter.delete('/',
-  fridgeController.deleteIngredient,
-  (req, res) => {
-    // console.log('I am in the fridgeRouter')
-    res.status(200).json(res.locals.ingredient);
-  }
-);
-
 module.exports = fridgeRouter;

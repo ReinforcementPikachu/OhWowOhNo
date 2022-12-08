@@ -44,6 +44,14 @@ const Login = () => {
             }
         )
     }
+    // function togglePassword() {
+    //     var x = document.getElementById("loginPassword");
+    //     if (x.type === "password") {
+    //       x.type = "text";
+    //     } else {
+    //       x.type = "password";
+    //     }
+    //   }
     return (
         <div className= 'login-wrapper'>
             <form>
@@ -59,10 +67,12 @@ const Login = () => {
                 <input
                     className= 'password'
                     name = 'password'
-                    type = 'text'
+                    type = 'password'
                     placeholder = 'Password'
                     id = 'loginPassword'>
                 </input>
+                {/* <br></br>
+                <button className = 'toggle' onClick={togglePassword}>Show Password</button> */}
                 <br></br>
             </form>
             <button onClick={loginHandler}>Log In</button>
