@@ -24,42 +24,42 @@ recipeController.getRecipes = async (req, res, next) => {
   }
 };
 
-// recipeController.addRecipe = async (req, res, next) => {
-//   const { name, image, url, user_id } = req.body;
-//   console.log(req.body);
-//   const query = `INSERT INTO Recipes VALUES('${user_id}', DEFAULT, '${name}', '${image}', '${url}')`;
-//   try{
-//     await db.query(query);
-//     res.locals.recipe = 'Recipe Added';
-//     return next();
-//   } catch(err){
-//     return next({
-//       log: `recipeController.js: ERROR: ${err}`,
-//       status: 500,
-//       message: {
-//         err: 'An error occurred in recipeController.addRecipe middleware'
-//       }
-//     });
-//   }
-// };
+recipeController.addRecipe = async (req, res, next) => {
+  const { name, image, url, user_id } = req.body;
+  console.log(req.body);
+  const query = `INSERT INTO Recipes VALUES('${user_id}', DEFAULT, '${name}', '${image}', '${url}')`;
+  try{
+    await db.query(query);
+    res.locals.recipe = 'Recipe Added';
+    return next();
+  } catch(err){
+    return next({
+      log: `recipeController.js: ERROR: ${err}`,
+      status: 500,
+      message: {
+        err: 'An error occurred in recipeController.addRecipe middleware'
+      }
+    });
+  }
+};
 
-// recipeController.deleteRecipe = async (req, res, next) => {
-//   const { user_id, name } = req.body;
-//   try {
-//     const deleteQuery = `DELETE FROM Recipe WHERE user_id=${user_id} AND name='${name}'`;
-//     await db.query(deleteQuery)
-//     res.locals.recipe = 'Recipe Deleted';
-//     return next();
-//   }
-//   catch (err) {
-//     return next({
-//       log: `recipeController.js: ERROR: ${err}`,
-//       status: 400,
-//       message: {
-//         err: 'An error occurred in recipeController.deleteRecipe middleware',
-//       },
-//     });
-//   }
-// };
+recipeController.deleteRecipe = async (req, res, next) => {
+  const { user_id, name } = req.body;
+  try {
+    const deleteQuery = `DELETE FROM Recipe WHERE user_id=${user_id} AND name='${name}'`;
+    await db.query(deleteQuery)
+    res.locals.recipe = 'Recipe Deleted';
+    return next();
+  }
+  catch (err) {
+    return next({
+      log: `recipeController.js: ERROR: ${err}`,
+      status: 400,
+      message: {
+        err: 'An error occurred in recipeController.deleteRecipe middleware',
+      },
+    });
+  }
+};
 
 module.exports = recipeController;

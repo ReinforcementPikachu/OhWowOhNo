@@ -11,18 +11,18 @@ recipeRouter.get('/:id',
   }
 );
 
-// recipeRouter.post('/',
-//   recipeController.saveRecipe,
-//   (req, res) => {
-//     res.status(201).json(res.locals.recipe)
-//   }
-// );
+recipeRouter.post('/',
+  recipeController.saveRecipe,
+  (req, res) => {
+    res.status(201).json(res.locals.recipe)
+  }
+);
 
-// recipeRouter.delete('/',
-//   recipeController.deleteRecipe,
-//   (req, res) => {
-//     res.status(201).json(res.locals.recipe)
-//   }
-// );
+recipeRouter.delete('/',
+  recipeController.deleteRecipe,
+  (req, res) => {
+    res.status(201).json(res.locals.recipe)
+  }
+);
 
 module.exports = recipeRouter;
