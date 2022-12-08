@@ -3,27 +3,26 @@ const recipeController = require('../controllers/recipeController');
 
 const recipeRouter = express.Router();
 
-
-
-recipeRouter.post('/getrecipes', recipeController.getRecipes, (req, res) => {
-  // console.log('I am in the recipeRouter')
-  res.status(200).json(res.locals.recipes);
-});
-
-recipeRouter.post('/addrecipe',
-  recipeController.addRecipe,
+recipeRouter.get('/:id',
+  recipeController.getRecipes,
   (req, res) => {
-    res.locals.message = 'recipe saved!'
-    res.status(201).json(res.locals.message)
+    console.log('I am in GET recipeRouter')
+    res.status(200).json(res.locals.recipes);
   }
 );
 
-// recipeRouter.delete('/recipe',
-//   recipeController.deleteRecipe,
-//   (req, res) => {
-//     res.locals.message = 'recipe deleted!'
-//     res.status(201).json(res.locals.message)
-//   }
-// );
+recipeRouter.post('/',
+  recipeController.saveRecipe,
+  (req, res) => {
+    res.status(201).json(res.locals.recipe)
+  }
+);
+
+recipeRouter.delete('/',
+  recipeController.deleteRecipe,
+  (req, res) => {
+    res.status(201).json(res.locals.recipe)
+  }
+);
 
 module.exports = recipeRouter;

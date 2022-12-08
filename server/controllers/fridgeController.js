@@ -4,7 +4,7 @@ const axios = require('axios')
 const fridgeController = {};
 
 fridgeController.getFridge = async (req, res, next) => {
-  // console.log('i am getFridge middleware');
+  console.log('i am getFridge middleware');
   const { id } = req.params;
   //need to send back in array
   const query = `SELECT ingredient from Fridge WHERE user_id = '${id}'`;
@@ -15,7 +15,7 @@ fridgeController.getFridge = async (req, res, next) => {
     for (let i = 0; i < rows.length; i++) {
       userIngredients.push(rows[i].ingredient)
     }
-    // console.log('i am userIngredients', userIngredients)
+    console.log('i am userIngredients', userIngredients)
     res.locals.fridge = userIngredients;
     return next();
   }
