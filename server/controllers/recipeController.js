@@ -2,13 +2,53 @@ const db = require('../models/dbModel');
 
 const recipeController = {};
 
-// recipeController.getRecipe = async (req, res, next) => {
-//   console.log('i am getRecipe middleware');
-//   const { user_id } = req.body;
-//   const query = `SELECT * from Recipe WHERE user_id = '${user_id}'`;;
+//get saved recipes from db
+recipeController.getRecipes = async (req, res, next) => {
+  console.log('i am getRecipes middleware');
+  const { id } = req.params;
+  const query = `SELECT * from Recipe WHERE user_id = '${id}'`;
+  try {
+    const recipes = await db.query(query);
+    console.log('recipes', recipes);
+    res.locals.recipes = recipes;
+    return next();
+  }
+  catch (err) {
+    return next({
+      log: `recipeController.js: ERROR: ${err}`,
+      status: 500,
+      message: {
+        err: 'An error occurred in recipeController.getRecipes middleware',
+      },
+    });
+  }
+};
+
+// recipeController.addRecipe = async (req, res, next) => {
+//   const { name, image, url, user_id } = req.body;
+//   console.log(req.body);
+//   const query = `INSERT INTO Recipes VALUES('${user_id}', DEFAULT, '${name}', '${image}', '${url}')`;
+//   try{
+//     await db.query(query);
+//     res.locals.recipe = 'Recipe Added';
+//     return next();
+//   } catch(err){
+//     return next({
+//       log: `recipeController.js: ERROR: ${err}`,
+//       status: 500,
+//       message: {
+//         err: 'An error occurred in recipeController.addRecipe middleware'
+//       }
+//     });
+//   }
+// };
+
+// recipeController.deleteRecipe = async (req, res, next) => {
+//   const { user_id, name } = req.body;
 //   try {
-//     const recipes = await db.query(query);
-//     res.locals.recipes = recipes;
+//     const deleteQuery = `DELETE FROM Recipe WHERE user_id=${user_id} AND name='${name}'`;
+//     await db.query(deleteQuery)
+//     res.locals.recipe = 'Recipe Deleted';
 //     return next();
 //   }
 //   catch (err) {
@@ -16,14 +56,10 @@ const recipeController = {};
 //       log: `recipeController.js: ERROR: ${err}`,
 //       status: 400,
 //       message: {
-//         err: 'An error occurred in recipeController.getRecipe middleware',
+//         err: 'An error occurred in recipeController.deleteRecipe middleware',
 //       },
 //     });
 //   }
 // };
-
-// recipeController.saveRecipe = async (req, res, next) => {};
-
-// recipeController.deleteRecipe = async (req, res, next) => {};
 
 module.exports = recipeController;
